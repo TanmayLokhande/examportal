@@ -1,0 +1,5 @@
+package com.examportal.entities;
+
+public class JwtRequest {
+
+}

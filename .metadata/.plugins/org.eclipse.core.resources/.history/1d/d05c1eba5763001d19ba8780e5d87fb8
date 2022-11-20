@@ -1,0 +1,5 @@
+package com.emailApi.Controller;
+
+public class EmailController {
+
+}

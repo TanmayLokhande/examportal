@@ -1,0 +1,51 @@
+package com.examportal.Services.Impl;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.examportal.Exceptions.ResourceNotFoundException;
+import com.examportal.Repositories.QuestionRepo;
+import com.examportal.Services.QuestionService;
+import com.examportal.entities.exam.Question;
+import com.examportal.entities.exam.Quiz;
+
+public class QuestionServiceImpl implements QuestionService{
+
+	@Autowired
+	private QuestionRepo questionRepo;
+
+	@Override
+	public Question addQuestion(Question question) {
+		// TODO Auto-generated method stub
+		return this.questionRepo.save(question);
+	}
+
+	@Override
+	public Question updateQuestion(Question question) {
+		// TODO Auto-generated method stub
+		return this.questionRepo.save(question);
+	}
+
+	@Override
+	public Set<Question> getAllQuestions() {
+		// TODO Auto-generated method stub
+		return new HashSet<>(this.questionRepo.findAll());
+	}
+
+	@Override
+	public Question getQuestion(Long questionId) {
+		// TODO Auto-generated method stub
+		return this.questionRepo.findById(questionId).orElseThrow(()-> new ResourceNotFoundException("Question", "Id"+questionId, ""));
+	}
+
+	@Override
+	public Set<Question> getQuestionsOfQuiz(Quiz quiz) {
+		// TODO Auto-generated method stub
+		return this.questionRepo.findByQuiz(quiz);
+	}
+	
+	
+	
+}

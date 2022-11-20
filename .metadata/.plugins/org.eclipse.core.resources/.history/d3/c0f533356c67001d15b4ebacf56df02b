@@ -1,0 +1,5 @@
+package com.examportal.entities.exam;
+
+public class Question {
+
+}

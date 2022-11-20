@@ -1,0 +1,5 @@
+package com.examportal.Security;
+
+public class CustomUserDetailsService1 {
+
+}

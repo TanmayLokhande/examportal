@@ -1,0 +1,5 @@
+package com.examportal.Repositories;
+
+public interface QuestionRepo {
+
+}

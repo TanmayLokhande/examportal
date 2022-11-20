@@ -1,0 +1,18 @@
+package com.examportal.payLoads;
+
+public class ApiResponse {
+
+	private String entity;
+	private String fieldName;
+	private String fieldValue;
+	
+	public ApiResponse(String entity, String fieldName, String fieldValue) {
+		super();
+		this.entity = entity;
+		this.fieldName = fieldName;
+		this.fieldValue = fieldValue;
+	}
+	
+	
+	
+}

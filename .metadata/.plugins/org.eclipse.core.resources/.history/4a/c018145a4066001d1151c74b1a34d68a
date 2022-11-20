@@ -1,0 +1,82 @@
+package com.examportal.entities;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class User implements UserDetails{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int userId;
+	private String username;
+	private String name;
+	private String email;
+	private String password;
+	private String profile;
+	
+	private boolean enabled = true;
+	
+	@OneToMany(cascade=CascadeType.ALL ,fetch = FetchType.EAGER ,mappedBy = "user")
+	@JsonIgnore
+	private Set<User_Role> user_roles = new HashSet<>();
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<Authority> authorities = new HashSet<>();
+		this.user_roles.forEach(user_role -> authorities.add(new Authority(user_role.getRole().getRoleName())));
+		return authorities;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	@Override
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public String getUsername() {
+		return this.username;
+	}
+	
+	
+}

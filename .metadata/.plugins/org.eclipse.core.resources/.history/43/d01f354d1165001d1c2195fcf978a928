@@ -1,0 +1,12 @@
+package com.examportal.payLoads;
+
+public class ApiResponse {
+
+	private String message;
+	private String status;
+	
+	
+	
+	
+	
+}

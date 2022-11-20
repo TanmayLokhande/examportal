@@ -1,0 +1,5 @@
+package com.emailApi.Services;
+
+public class EmailService {
+
+}

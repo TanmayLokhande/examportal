@@ -1,0 +1,29 @@
+package com.examportal.Controllers;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.examportal.Services.UserService;
+import com.examportal.entities.User;
+import com.examportal.entities.User_Role;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+	@Autowired
+	private UserService userService;
+	
+	@PostMapping("/")
+	public User createUser( @RequestBody User user ) {
+		Set<User_Role> roles = new HashSet()<>();
+		this.userService.createUser(user, null);
+	}
+	
+}

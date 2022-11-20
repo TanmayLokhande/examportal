@@ -1,0 +1,5 @@
+package com.examportal.Services;
+
+public interface CategoryService {
+
+}

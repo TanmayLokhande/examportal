@@ -1,0 +1,15 @@
+package com.examportal.entities;
+
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+
+public class User_Role {
+
+	private int userRoleId;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private  User user;
+	
+	@ManyToOne
+	private Role role;
+}

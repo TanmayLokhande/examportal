@@ -1,0 +1,5 @@
+package com.loginApi.Config;
+
+public class MySecurityConfig {
+
+}
