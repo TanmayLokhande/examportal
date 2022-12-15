@@ -1,5 +1,6 @@
-package com.examportal.Controllers;
+	package com.examportal.Controllers;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.examportal.Services.QuizService;
+import com.examportal.entities.exam.Category;
 import com.examportal.entities.exam.Quiz;
 import com.examportal.payLoads.ApiResponse;
 
@@ -56,6 +58,28 @@ public class QuizController {
 		apiResponse.setMessage("Quiz deleted successfully!!");
 		apiResponse.setStatus(true);
 		return new ResponseEntity<ApiResponse>(apiResponse,HttpStatus.OK);
+	}
+	
+	@GetMapping("/category/{catId}")
+	public ResponseEntity<List<Quiz>> getQuizzesOfCategory(@PathVariable("catId") Long catId){
+		Category category = new Category();
+		category.setCId(catId);
+		 List<Quiz> quizzes = this.quizService.getQuizzesByCategory(category);
+		 return new ResponseEntity<List<Quiz>>(quizzes,HttpStatus.OK);
+	}	
+	
+	@GetMapping("/active")
+	public ResponseEntity<List<Quiz>> getActiveQuizzes(){
+		List<Quiz> quizzes = this.quizService.getActiveQuizzes();
+		 return new ResponseEntity<List<Quiz>>(quizzes,HttpStatus.OK);
+	}
+	
+	@GetMapping("/category/active/{catId}")
+	public ResponseEntity<List<Quiz>> getActiveQuizzesByCategory(@PathVariable("catId") Long catId){
+		Category category = new Category();
+		category.setCId(catId);
+		List<Quiz> quizzes = this.quizService.getActiveQuizzesByCategory(category);
+		 return new ResponseEntity<List<Quiz>>(quizzes,HttpStatus.OK);
 	}
 	
 }

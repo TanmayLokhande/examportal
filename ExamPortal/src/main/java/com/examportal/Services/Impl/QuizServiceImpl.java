@@ -1,6 +1,7 @@
 package com.examportal.Services.Impl;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.examportal.Exceptions.ResourceNotFoundException;
 import com.examportal.Repositories.QuestionRepo;
 import com.examportal.Repositories.QuizRepo;
 import com.examportal.Services.QuizService;
+import com.examportal.entities.exam.Category;
 import com.examportal.entities.exam.Question;
 import com.examportal.entities.exam.Quiz;
 
@@ -51,6 +53,25 @@ public class QuizServiceImpl implements QuizService{
 		this.quizRepo.deleteById(quizId);
 		System.out.println("deleted");
 	}
+
+	@Override
+	public List<Quiz> getQuizzesByCategory(Category category) {
+		// TODO Auto-generated method stub
+		return this.quizRepo.findBycategory(category);
+	}
+
+	@Override
+	public List<Quiz> getActiveQuizzes() {
+		return this.quizRepo.findByActive(true);
+	}
+
+	@Override
+	public List<Quiz> getActiveQuizzesByCategory(Category category) {
+		// TODO Auto-generated method stub
+		return this.quizRepo.findByCategoryAndActive(category, true);
+	}
+
+	
 
 	
 }

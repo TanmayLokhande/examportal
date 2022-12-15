@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.examportal.entities.exam.AttemptedQuiz;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -42,6 +43,8 @@ public class User implements UserDetails{
 	@JsonIgnore
 	private Set<User_Role> user_roles = new HashSet<>();
 	
+	@OneToMany(mappedBy = "user")
+	private Set<AttemptedQuiz> attemptedQuizzes = new HashSet<>();
 	
 
 	@Override

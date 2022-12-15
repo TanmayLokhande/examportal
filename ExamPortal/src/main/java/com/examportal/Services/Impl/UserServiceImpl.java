@@ -72,4 +72,10 @@ public class UserServiceImpl implements UserService{
 		return updatedUser;
 	}
 
+	@Override
+	public User getUserById(Integer userId) {
+		User user = this.userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User", "userId"+userId, ""));
+		return user;
+	}
+
 }
